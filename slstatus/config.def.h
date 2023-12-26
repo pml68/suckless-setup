@@ -70,7 +70,7 @@ static const struct arg args[] = {
     {netspeed_rx, "  %sB/s", "enp3s0"},
     {netspeed_tx, " -  %sB/s;", "enp3s0"},
     {disk_free, " %s |", "/", 25},
-    {cpu_perc, " %3s%% |", NULL},
+    {cpu_perc, "%3s%% |", NULL},
     {datetime, " %s ", "%H:%M:%S"},
 
 };
