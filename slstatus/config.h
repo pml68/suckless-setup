@@ -67,10 +67,7 @@ static const struct arg args[] = {
 
     /* function		format		argument	interval (in ms) */
 
-    {netspeed_rx, "  %sB/s", "enp3s0"},
-    {netspeed_tx, " -  %sB/s;", "enp3s0"},
-    {disk_free, " %s |", "/", 25},
-    {cpu_perc, "%3s%% |", NULL},
+    {datetime, "%s;", "%G. %B. %e. %a"},
     {datetime, " %s ", "%H:%M:%S"},
 
 };
