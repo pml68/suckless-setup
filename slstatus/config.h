@@ -67,7 +67,8 @@ static const struct arg args[] = {
 
     /* function		format		argument	interval (in ms) */
 
-    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
+    {datetime, "%s;", "%G. %B.%e. %a"},
+    {keymap, "%s ", NULL},
     {datetime, " %s ", "%H:%M:%S"},
 
 };
