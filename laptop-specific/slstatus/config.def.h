@@ -67,8 +67,8 @@ static const struct arg args[] = {
 
     /* function		format		argument	interval (in ms) */
 
-    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
-    {wifi_essid, "%s ", "wlan0"},        {battery_perc, "%s%%", "BAT1"},
+    {datetime, "%s;", "%G. %B.%e. %a"}, {keymap, "%s ", NULL},
+    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
     {datetime, " %s ", "%H:%M:%S"},
 
 };
