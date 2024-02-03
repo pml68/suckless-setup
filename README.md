@@ -46,3 +46,7 @@ picom &
 slstatus &
 exec dwm
 ```
+
+# Screenshot:
+
+![Screenshot](screenshot.png)
