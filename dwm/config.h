@@ -78,8 +78,15 @@ static const char *dmenucmd[] = {
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"st", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
+static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
 static const char *discordcmd[] = {"discord", NULL};
+static const char *playpausecmd[] = {"adb",      "shell", "input",
+                                     "keyevent", "85",    NULL};
+static const char *nextcmd[] = {"adb",      "shell", "input",
+                                "keyevent", "87",    NULL};
+static const char *previouscmd[] = {"adb",      "shell", "input",
+                                    "keyevent", "88",    NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -110,8 +117,12 @@ static const Key keys[] = {
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5) TAGKEYS(XK_7, 6) TAGKEYS(XK_8, 7)
             TAGKEYS(XK_9, 8){MODKEY | ShiftMask, XK_q, quit, {0}},
     {0, XK_Print, spawn, {.v = prtscrcmd}},
+    {MODKEY | ShiftMask, XK_h, spawn, {.v = kblayoutcmd}},
     {MODKEY | ShiftMask, XK_f, spawn, {.v = firefoxcmd}},
     {MODKEY | ShiftMask, XK_d, spawn, {.v = discordcmd}},
+    {MODKEY | ShiftMask, XK_s, spawn, {.v = playpausecmd}},
+    {MODKEY | ShiftMask, XK_n, spawn, {.v = nextcmd}},
+    {MODKEY | ShiftMask, XK_p, spawn, {.v = previouscmd}},
 };
 
 /* button definitions */
