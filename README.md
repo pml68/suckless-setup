@@ -43,6 +43,7 @@ Update your .xinitrc file
 # ...
 ~/.fehbg &
 picom &
+flameshot &
 slstatus &
 exec dwm
 ```
