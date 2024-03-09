@@ -78,9 +78,11 @@ static const char *dmenucmd[] = {
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"st", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
-static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
+static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape",
+                                    NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
 static const char *discordcmd[] = {"discord", NULL};
+static const char *adbscreencmd[] = {"screenshot", NULL};
 static const char *playpausecmd[] = {"adb",      "shell", "input",
                                      "keyevent", "85",    NULL};
 static const char *nextcmd[] = {"adb",      "shell", "input",
@@ -101,8 +103,8 @@ static const Key keys[] = {
     {MODKEY, XK_l, setmfact, {.f = +0.05}},
     {MODKEY, XK_Return, zoom, {0}},
     {MODKEY, XK_Tab, view, {0}},
-    {MODKEY | ShiftMask,  XK_Tab, shiftviewclients, {.i = +1}},
-    {MODKEY | ShiftMask,  XK_7, shiftviewclients, {.i = -1}},
+    {MODKEY | ShiftMask, XK_Tab, shiftviewclients, {.i = +1}},
+    {MODKEY | ShiftMask, XK_7, shiftviewclients, {.i = -1}},
     {MODKEY | ShiftMask, XK_c, killclient, {0}},
     {MODKEY, XK_t, setlayout, {.v = &layouts[0]}},
     {MODKEY, XK_f, setlayout, {.v = &layouts[1]}},
@@ -124,6 +126,7 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_s, spawn, {.v = playpausecmd}},
     {MODKEY | ShiftMask, XK_n, spawn, {.v = nextcmd}},
     {MODKEY | ShiftMask, XK_p, spawn, {.v = previouscmd}},
+    {MODKEY, XK_s, spawn, {.v = adbscreencmd}},
 };
 
 /* button definitions */
