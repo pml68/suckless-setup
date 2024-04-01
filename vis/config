@@ -1,0 +1,3 @@
+visualizer.spectrum.bar.width=1
+audio.stereo.enabled=false
+colors.scheme=blue-pink-gradient
