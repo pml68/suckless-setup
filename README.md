@@ -26,7 +26,7 @@ sudo cp picom.conf /etc/xdg/picom.conf
 
 # optional
 cp neofetch/config.conf ~/.config/neofetch/config.conf
-cp vis -r ~/.config/ # for [cli-visualizer](https://github.com/dpayne/cli-visualizer)
+cp vis -r ~/.config/ # for https://github.com/dpayne/cli-visualizer
 ```
 
 Build and install each program manually or with the included script
