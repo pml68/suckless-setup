@@ -2,7 +2,7 @@
 
 My personal suckless setup.
 
-- Palenight color scheme and JetBrainsMono Nerd Font by default (colors from [Palenight VSCode Extension](https://github.com/whizkydee/vscode-palenight-theme/))
+- Rosé Pine color scheme and JetBrainsMono Nerd Font by default (colors from [Rosé Pine for st](https://github.com/rose-pine/st))
 - Custom keybindings:
     - Alt+Shift+D: Opens Discord
     - Alt+Shift+F: Opens Firefox
