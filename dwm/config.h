@@ -10,9 +10,9 @@ static const int splitstatus = 1;       /* 1 for split status items */
 static const char *splitdelim = ";"; /* Character used for separating status */
 static const char *fonts[] = {"JetBrainsMono NF:style=Bold:size=12"};
 static const char dmenufont[] = "JetBrainsMono NF:style=Bold:size=12";
-static const char col_gray3[] = "#e0def4";
 static const char col_gray1[] = "#191724";
 static const char col_gray2[] = "#dde1e7";
+static const char col_gray3[] = "#e0def4";
 static const char col_gray4[] = "#e0def4";
 static const char col_cyan[] = "#575e6e";
 static const unsigned int baralpha = 190;
@@ -29,7 +29,7 @@ static const unsigned int alphas[][3] = {
 };
 
 /* tagging */
-static const char *tags[] = {"I", "use", "Arch", "by", "the", "way"};
+static const char *tags[] = {"1", "2", "3", "4", "5", "6"};
 
 static const Rule rules[] = {
     /* xprop(1):
