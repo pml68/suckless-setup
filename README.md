@@ -3,7 +3,7 @@
 My personal suckless setup.
 
 - Rosé Pine color scheme and JetBrainsMono Nerd Font by default (colors from [Rosé Pine for st](https://github.com/rose-pine/st))
-- Custom keybindings:
+- General purpose keybindings:
     - Alt+Shift+D: Opens Discord
     - Alt+Shift+F: Opens Firefox
     - PrtScr: Opens Flameshot
@@ -25,7 +25,7 @@ Replace config files
 sudo cp picom.conf /etc/xdg/picom.conf
 
 # optional
-cp neofetch/config.conf ~/.config/neofetch/config.conf
+cp neofetch -r ~/.config/
 cp vis -r ~/.config/ # for https://github.com/dpayne/cli-visualizer
 ```
 
