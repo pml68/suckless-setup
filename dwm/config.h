@@ -78,8 +78,7 @@ static const char *dmenucmd[] = {
     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
 static const char *termcmd[] = {"st", NULL};
 static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
-static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape",
-                                    NULL};
+static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
 static const char *discordcmd[] = {"discord", NULL};
 static const char *adbscreencmd[] = {"screenshot", NULL};
