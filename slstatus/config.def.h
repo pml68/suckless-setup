@@ -69,6 +69,6 @@ static const struct arg args[] = {
 
     {datetime, "%s;", "%G. %B. %e. %a"},
     {keymap, "%s ", NULL},
-    {datetime, " %s ", "%H:%M:%S"},
+    {datetime, "%s ", "%H:%M:%S"},
 
 };
