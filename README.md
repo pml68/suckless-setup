@@ -27,6 +27,11 @@ sudo cp picom.conf /etc/xdg/picom.conf
 # optional
 cp neofetch -r ~/.config/
 cp vis -r ~/.config/ # for https://github.com/dpayne/cli-visualizer
+
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+cp tmux -r ~/.config
+
+# Start tmux, and install necessary plugins with C-a I
 ```
 
 Build and install each program manually or with the included script
