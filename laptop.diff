@@ -1,0 +1,58 @@
+diff --git a/slstatus/config.def.h b/slstatus/config.def.h
+index 9eb7384..b9536b3 100644
+--- a/slstatus/config.def.h
++++ b/slstatus/config.def.h
+@@ -67,8 +67,8 @@ static const struct arg args[] = {
+ 
+     /* function		format		argument	interval (in ms) */
+ 
+-    {datetime, "%s;", "%G. %B. %e. %a"},
+-    {keymap, "%s ", NULL},
+-    {datetime, "%s ", "%H:%M:%S"},
++    {datetime, "%s;", "%G. %B.%e. %a"}, {keymap, "%s ", NULL},
++    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
++    {datetime, " %s ", "%H:%M:%S"},
+ 
+ };
+diff --git a/slstatus/config.h b/slstatus/config.h
+index 9eb7384..b9536b3 100644
+--- a/slstatus/config.h
++++ b/slstatus/config.h
+@@ -67,8 +67,8 @@ static const struct arg args[] = {
+ 
+     /* function		format		argument	interval (in ms) */
+ 
+-    {datetime, "%s;", "%G. %B. %e. %a"},
+-    {keymap, "%s ", NULL},
+-    {datetime, "%s ", "%H:%M:%S"},
++    {datetime, "%s;", "%G. %B.%e. %a"}, {keymap, "%s ", NULL},
++    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
++    {datetime, " %s ", "%H:%M:%S"},
+ 
+ };
+diff --git a/st/config.def.h b/st/config.def.h
+index 438dc96..56521ed 100644
+--- a/st/config.def.h
++++ b/st/config.def.h
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "JetBrainsMono NF:style=Regular:size=12";
++static char *font = "JetBrainsMono NF:style=Regular:size=11";
+ static int borderpx = 0;
+ 
+ /*
+diff --git a/st/config.h b/st/config.h
+index 438dc96..56521ed 100644
+--- a/st/config.h
++++ b/st/config.h
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "JetBrainsMono NF:style=Regular:size=12";
++static char *font = "JetBrainsMono NF:style=Regular:size=11";
+ static int borderpx = 0;
+ 
+ /*
