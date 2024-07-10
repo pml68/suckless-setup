@@ -11,7 +11,7 @@ My personal suckless setup.
 ## Installation
 Install necessary packages (Arch Linux specific, other distros will differ)
 ```sh
-sudo pacman -S picom feh flameshot ttf-jetbrains-mono-nerd
+sudo pacman -S picom feh flameshot ttf-jetbrains-mono-nerd qalculate-gtk
 ```
 
 Clone the repo
