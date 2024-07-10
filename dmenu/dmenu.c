@@ -1,11 +1,16 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/X.h>
 #include <ctype.h>
+#include <errno.h>
+#include <fcntl.h>
 #include <locale.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
+#include <sys/prctl.h>
+#include <sys/select.h>
 #include <time.h>
 #include <unistd.h>
 
@@ -38,6 +43,12 @@ struct item {
   struct item *left, *right;
   int out;
 };
+
+static struct {
+  pid_t pid;
+  int enable, in[2], out[2];
+  char buf[256];
+} qalc;
 
 static char text[BUFSIZ] = "";
 static char *embed;
@@ -231,7 +242,72 @@ static void grabkeyboard(void) {
   die("cannot grab keyboard");
 }
 
+static void init_qalc(void) {
+  pipe(qalc.in);
+  pipe2(qalc.out, O_NONBLOCK);
+  qalc.pid = fork();
+  if (qalc.pid == -1)
+    die("failed to fork for qalc");
+  if (qalc.pid == 0) {
+    dup2(qalc.in[0], STDIN_FILENO);
+    dup2(qalc.out[1], STDOUT_FILENO);
+    close(qalc.in[1]);
+    close(qalc.out[0]);
+    prctl(PR_SET_PDEATHSIG, SIGTERM);
+    execl("/usr/bin/qalc", "qalc", "-c0", "-t", NULL);
+    die("execl qalc failed");
+  } else { // parent
+    close(qalc.in[0]);
+    close(qalc.out[1]);
+    items = malloc(sizeof(struct item) * 2);
+    items[0].text = malloc(LENGTH(qalc.buf));
+    strcpy(items[0].text, "no result");
+    items[1].out = 0;
+    items[1].text = NULL;
+  }
+}
+
+static void recv_qalc(void) {
+  ssize_t r = read(qalc.out[0], qalc.buf, LENGTH(qalc.buf));
+
+  if (r < 0)
+    die("error reading qalc.out");
+
+  if (qalc.buf[0] == '\n') {
+    int i;
+    for (i = 3; i < LENGTH(qalc.buf) && qalc.buf[i] != '\n'; i++)
+      items[0].text[i - 3] = qalc.buf[i];
+    items[0].text[i - 3] = 0;
+    if (r != LENGTH(qalc.buf))
+      return;
+  }
+
+  while (read(qalc.out[0], qalc.buf, LENGTH(qalc.buf)) != -1)
+    ; // empty the pipe
+  if (errno != EAGAIN && errno != EWOULDBLOCK)
+    die("error emptying qalc.out");
+}
+
+static void send_qalc(void) {
+  int s = strlen(text);
+  text[s] = '\n';
+  write(qalc.in[1], text, s + 1);
+  text[s] = 0;
+}
+
+static void match_qalc(void) {
+  matches = matchend = NULL;
+  appenditem(items, &matches, &matchend);
+  curr = sel = matches;
+  calcoffsets();
+}
+
 static void match(void) {
+  if (qalc.enable) {
+    match_qalc();
+    return;
+  }
+
   static char **tokv = NULL;
   static int tokn = 0;
 
@@ -555,6 +631,9 @@ static void keypress(XKeyEvent *ev) {
     break;
   }
 
+  if (qalc.enable)
+    send_qalc();
+
 draw:
   drawmenu();
 }
@@ -603,35 +682,50 @@ static void readstdin(void) {
 static void run(void) {
   XEvent ev;
 
-  while (!XNextEvent(dpy, &ev)) {
-    if (XFilterEvent(&ev, win))
-      continue;
-    switch (ev.type) {
-    case DestroyNotify:
-      if (ev.xdestroywindow.window != win)
-        break;
-      cleanup();
-      exit(1);
-    case Expose:
-      if (ev.xexpose.count == 0)
-        drw_map(drw, win, 0, 0, mw, mh);
-      break;
-    case FocusIn:
-      /* regrab focus from parent window */
-      if (ev.xfocus.window != win)
-        grabfocus();
-      break;
-    case KeyPress:
-      keypress(&ev.xkey);
-      break;
-    case SelectionNotify:
-      if (ev.xselection.property == utf8)
-        paste();
-      break;
-    case VisibilityNotify:
-      if (ev.xvisibility.state != VisibilityUnobscured)
-        XRaiseWindow(dpy, win);
-      break;
+  fd_set rfds;
+  int xfd = ConnectionNumber(dpy);
+
+  for (;;) {
+    FD_ZERO(&rfds);
+    FD_SET(xfd, &rfds);
+    FD_SET(qalc.out[0], &rfds);
+
+    if (select(MAX(xfd, qalc.out[0]) + 1, &rfds, NULL, NULL, NULL) > 0) {
+      if (qalc.enable && FD_ISSET(qalc.out[0], &rfds)) {
+        recv_qalc();
+        drawmenu();
+      }
+      while (XPending(dpy) && !XNextEvent(dpy, &ev)) {
+        if (XFilterEvent(&ev, win))
+          continue;
+        switch (ev.type) {
+        case DestroyNotify:
+          if (ev.xdestroywindow.window != win)
+            break;
+          cleanup();
+          exit(1);
+        case Expose:
+          if (ev.xexpose.count == 0)
+            drw_map(drw, win, 0, 0, mw, mh);
+          break;
+        case FocusIn:
+          /* regrab focus from parent window */
+          if (ev.xfocus.window != win)
+            grabfocus();
+          break;
+        case KeyPress:
+          keypress(&ev.xkey);
+          break;
+        case SelectionNotify:
+          if (ev.xselection.property == utf8)
+            paste();
+          break;
+        case VisibilityNotify:
+          if (ev.xvisibility.state != VisibilityUnobscured)
+            XRaiseWindow(dpy, win);
+          break;
+        }
+      }
     }
   }
 }
@@ -682,7 +776,8 @@ static void setup(void) {
             i = j;
           }
     }
-    /* no focused window is on screen, so use pointer location instead */
+    /* no focused window is on screen, so use pointer location instead
+     */
     if (mon < 0 && !area &&
         XQueryPointer(dpy, root, &dw, &dw, &x, &y, &di, &di, &du))
       for (i = 0; i < n; i++)
@@ -755,7 +850,7 @@ static void setup(void) {
 }
 
 static void usage(void) {
-  die("usage: dmenu [-bfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
+  die("usage: dmenu [-bCfiv] [-l lines] [-p prompt] [-fn font] [-m monitor]\n"
       "             [-nb color] [-nf color] [-sb color] [-sf color] [-w "
       "windowid]");
 }
@@ -771,6 +866,8 @@ int main(int argc, char *argv[]) {
       exit(0);
     } else if (!strcmp(argv[i], "-b")) /* appears at the bottom of the screen */
       topbar = 0;
+    else if (!strcmp(argv[i], "-C")) /* grabs keyboard before reading stdin */
+      qalc.enable = 1;
     else if (!strcmp(argv[i], "-f")) /* grabs keyboard before reading stdin */
       fast = 1;
     else if (!strcmp(argv[i], "-c")) /* centers dmenu on screen */
@@ -829,7 +926,10 @@ int main(int argc, char *argv[]) {
     die("pledge");
 #endif
 
-  if (fast && !isatty(0)) {
+  if (qalc.enable) {
+    init_qalc();
+    grabkeyboard();
+  } else if (fast && !isatty(0)) {
     grabkeyboard();
     readstdin();
   } else {

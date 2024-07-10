@@ -88,6 +88,10 @@ static const char *nextcmd[] = {"adb",      "shell", "input",
                                 "keyevent", "87",    NULL};
 static const char *previouscmd[] = {"adb",      "shell", "input",
                                     "keyevent", "88",    NULL};
+static const char *qalccmd[] = {
+    "dmenu_run", "-m",  dmenumon,  "-fn", dmenufont, "-nb",
+    col_gray1,   "-nf", col_gray3, "-sb", col_cyan,  "-sf",
+    col_gray4,   "-C",  "-l",      "1",     NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
@@ -126,6 +130,7 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_n, spawn, {.v = nextcmd}},
     {MODKEY | ShiftMask, XK_p, spawn, {.v = previouscmd}},
     {MODKEY, XK_s, spawn, {.v = adbscreencmd}},
+    {MODKEY, XK_c, spawn, {.v = qalccmd}},
 };
 
 /* button definitions */
