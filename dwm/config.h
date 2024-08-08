@@ -4,7 +4,7 @@
 static const unsigned int borderpx = 0; /* border pixel of windows */
 static const unsigned int gappx = 15;   /* gaps between windows */
 static const unsigned int snap = 32;    /* snap pixel */
-static const int showbar = 1;           /* 0 means no bar */
+static const int showbar = 0;           /* 0 means no bar */
 static const int topbar = 1;            /* 0 means bottom bar */
 static const int splitstatus = 1;       /* 1 for split status items */
 static const char *splitdelim = ";"; /* Character used for separating status */
@@ -63,6 +63,7 @@ static const Layout layouts[] = {
       {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},               \
       {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
       {MODKEY | ControlMask | ShiftMask, KEY, toggletag, {.ui = 1 << TAG}},
+#define HOLDKEY XK_b
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd)                                                             \
@@ -91,13 +92,13 @@ static const char *previouscmd[] = {"adb",      "shell", "input",
 static const char *qalccmd[] = {
     "dmenu_run", "-m",  dmenumon,  "-fn", dmenufont, "-nb",
     col_gray1,   "-nf", col_gray3, "-sb", col_cyan,  "-sf",
-    col_gray4,   "-C",  "-l",      "1",     NULL};
+    col_gray4,   "-C",  "-l",      "1",   NULL};
 
 static const Key keys[] = {
     /* modifier                     key        function        argument */
     {MODKEY, XK_p, spawn, {.v = dmenucmd}},
     {MODKEY | ShiftMask, XK_Return, spawn, {.v = termcmd}},
-    {MODKEY, XK_b, togglebar, {0}},
+    {MODKEY, XK_q, togglebar, {0}},
     {MODKEY, XK_j, focusstack, {.i = +1}},
     {MODKEY, XK_k, focusstack, {.i = -1}},
     {MODKEY, XK_i, incnmaster, {.i = +1}},
@@ -122,6 +123,7 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_period, tagmon, {.i = +1}},
     TAGKEYS(XK_1, 0) TAGKEYS(XK_2, 1) TAGKEYS(XK_3, 2) TAGKEYS(XK_4, 3)
         TAGKEYS(XK_5, 4) TAGKEYS(XK_6, 5){MODKEY | ShiftMask, XK_q, quit, {0}},
+    {MODKEY, HOLDKEY, holdbar, {0}},
     {0, XK_Print, spawn, {.v = prtscrcmd}},
     {MODKEY | ShiftMask, XK_h, spawn, {.v = kblayoutcmd}},
     {MODKEY | ShiftMask, XK_f, spawn, {.v = firefoxcmd}},
