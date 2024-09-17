@@ -74,7 +74,7 @@ index a31694d..3056d00 100644
  static const char *termcmd[] = {"st", NULL};
  static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 -static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
-+static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
++static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "ctrl:nocaps", "&&", "xcape", "-e", "'Control_L=Escape'", NULL};
  static const char *firefoxcmd[] = {"firefox", NULL};
  static const char *discordcmd[] = {"discord", NULL};
  static const char *adbscreencmd[] = {"screenshot", NULL};
@@ -96,7 +96,7 @@ index a31694d..3056d00 100644
  static const char *termcmd[] = {"st", NULL};
  static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 -static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
-+static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
++static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "ctrl:nocaps", "&&", "xcape", "-e", "'Control_L=Escape'", NULL};
  static const char *firefoxcmd[] = {"firefox", NULL};
  static const char *discordcmd[] = {"discord", NULL};
  static const char *adbscreencmd[] = {"screenshot", NULL};
