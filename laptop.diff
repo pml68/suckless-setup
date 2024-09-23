@@ -9,7 +9,7 @@ index 9eb7384..b9536b3 100644
 -    {datetime, "%s;", "%G. %B. %e. %a"},
 -    {keymap, "%s ", NULL},
 -    {datetime, "%s ", "%H:%M:%S"},
-+    {datetime, "%s;", "%G. %B.%e. %a"}, {keymap, "%s ", NULL},
++    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
 +    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
 +    {datetime, " %s ", "%H:%M:%S"},
  
@@ -25,7 +25,7 @@ index 9eb7384..b9536b3 100644
 -    {datetime, "%s;", "%G. %B. %e. %a"},
 -    {keymap, "%s ", NULL},
 -    {datetime, "%s ", "%H:%M:%S"},
-+    {datetime, "%s;", "%G. %B.%e. %a"}, {keymap, "%s ", NULL},
++    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
 +    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
 +    {datetime, " %s ", "%H:%M:%S"},
  
