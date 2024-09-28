@@ -5,13 +5,13 @@ My personal suckless setup.
 - Rosé Pine color scheme and JetBrainsMono Nerd Font by default (colors from [Rosé Pine for st](https://github.com/rose-pine/st))
 - General purpose keybindings:
     - Alt+Shift+D: Opens Discord
-    - Alt+Shift+F: Opens Firefox
+    - Alt+Shift+F: Opens Zen Browser
     - PrtScr: Opens Flameshot
 
 ## Installation
 Install necessary packages (Arch Linux specific, other distros will differ)
 ```sh
-sudo pacman -S picom feh flameshot ttf-jetbrains-mono-nerd qalculate-gtk
+sudo pacman -S picom feh flameshot ttf-jetbrains-mono-nerd libqalculate
 ```
 
 Clone the repo
@@ -34,7 +34,7 @@ cp tmux -r ~/.config
 # Start tmux, and install necessary plugins with C-a I
 ```
 
-Build and install each program manually or with the included script
+Build and install each suckless program manually or with the included script
 ```sh
 ./install.sh
 ```
