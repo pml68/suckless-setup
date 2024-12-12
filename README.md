@@ -8,11 +8,15 @@ My personal suckless setup.
     - Alt+Shift+F: Opens Zen Browser
     - PrtScr: Opens Flameshot
 
-## Installation
+## Dependencies
 Install necessary packages (Arch Linux specific, other distros will differ)
 ```sh
 sudo pacman -S picom feh flameshot ttf-jetbrains-mono-nerd libqalculate
 ```
+
+## Installation
+
+### Manual
 
 Clone the repo
 ```sh
@@ -34,9 +38,15 @@ cp tmux -r ~/.config
 # Start tmux, and install necessary plugins with C-a I
 ```
 
-Build and install each suckless program manually or with the included script
+Build and install each suckless program
 ```sh
-./install.sh
+cd dwm
+sudo make clean install
+cd ..
+
+cd dmenu
+sudo make clean install
+# ...
 ```
 
 Set the background
@@ -52,6 +62,14 @@ picom &
 flameshot &
 slstatus &
 exec dwm
+```
+
+### Automated
+
+Simply run the included script
+```sh
+chmod +x install.sh
+./install.sh
 ```
 
 # Screenshot:
