@@ -1,34 +1,28 @@
 diff --git a/slstatus/config.def.h b/slstatus/config.def.h
-index 9eb7384..b9536b3 100644
+index c273999..d8c35ed 100644
 --- a/slstatus/config.def.h
 +++ b/slstatus/config.def.h
-@@ -67,8 +67,8 @@ static const struct arg args[] = {
- 
-     /* function		format		argument	interval (in ms) */
- 
--    {datetime, "%s;", "%G. %B. %e. %a"},
--    {keymap, "%s ", NULL},
--    {datetime, "%s ", "%H:%M:%S"},
-+    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
-+    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
-+    {datetime, " %s ", "%H:%M:%S"},
- 
+@@ -70,6 +70,8 @@ static const struct arg args[] = {
+     {datetime, "%s;", "%G. %B. %e. %a"},
+     {run_command, "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
+     {keymap, "%s ", NULL},
++    {wifi_essid, "%s ", "wlan0"},
++    {battery_perc, "%s%% ", "BAT1"},
+     {datetime, "%s ", "%H:%M:%S"},
+
  };
 diff --git a/slstatus/config.h b/slstatus/config.h
-index 9eb7384..b9536b3 100644
+index c273999..d8c35ed 100644
 --- a/slstatus/config.h
 +++ b/slstatus/config.h
-@@ -67,8 +67,8 @@ static const struct arg args[] = {
- 
-     /* function		format		argument	interval (in ms) */
- 
--    {datetime, "%s;", "%G. %B. %e. %a"},
--    {keymap, "%s ", NULL},
--    {datetime, "%s ", "%H:%M:%S"},
-+    {datetime, "%s;", "%G. %B. %e. %a"}, {keymap, "%s ", NULL},
-+    {wifi_essid, "%s ", "wlan0"},       {battery_perc, "%s%%", "BAT1"},
-+    {datetime, " %s ", "%H:%M:%S"},
- 
+@@ -70,6 +70,8 @@ static const struct arg args[] = {
+     {datetime, "%s;", "%G. %B. %e. %a"},
+     {run_command, "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
+     {keymap, "%s ", NULL},
++    {wifi_essid, "%s ", "wlan0"},
++    {battery_perc, "%s%% ", "BAT1"},
+     {datetime, "%s ", "%H:%M:%S"},
+
  };
 diff --git a/st/config.def.h b/st/config.def.h
 index f5b4265..aec5a49 100644
