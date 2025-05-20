@@ -90,6 +90,9 @@ static const char *nextcmd[] = {"adb",      "shell", "input",
                                 "keyevent", "87",    NULL};
 static const char *previouscmd[] = {"adb",      "shell", "input",
                                     "keyevent", "88",    NULL};
+static const char *volumeup[] = {"pulsemixer", "--change-volume", "+5", NULL};
+static const char *volumedown[] = {"pulsemixer", "--change-volume", "-5", NULL};
+static const char *volumereset[] = {"pulsemixer", "--set-volume", "60", NULL};
 static const char *qalccmd[] = {
     "dmenu_run", "-m",  dmenumon,  "-fn", dmenufont, "-nb",
     col_gray1,   "-nf", col_gray3, "-sb", col_cyan,  "-sf",
@@ -134,6 +137,9 @@ static const Key keys[] = {
     {MODKEY | ShiftMask, XK_p, spawn, {.v = previouscmd}},
     {MODKEY, XK_s, spawn, {.v = adbscreencmd}},
     {MODKEY, XK_c, spawn, {.v = qalccmd}},
+    {MODKEY | ShiftMask, XK_o, spawn, {.v = volumeup}},
+    {MODKEY | ShiftMask, XK_l, spawn, {.v = volumedown}},
+    {MODKEY | ShiftMask, XK_r, spawn, {.v = volumereset}},
 };
 
 /* button definitions */
