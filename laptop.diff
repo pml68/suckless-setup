@@ -69,7 +69,7 @@ index 1bdb869..16a134f 100644
  static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 -static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
 +static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
- static const char *firefoxcmd[] = {"zen-browser", NULL};
+ static const char *firefoxcmd[] = {"firefox", NULL};
  static const char *discordcmd[] = {"discord", NULL};
  static const char *adbscreencmd[] = {"screenshot", NULL};
 diff --git a/dwm/config.h b/dwm/config.h
@@ -91,6 +91,6 @@ index 1bdb869..16a134f 100644
  static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
 -static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
 +static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
- static const char *firefoxcmd[] = {"zen-browser", NULL};
+ static const char *firefoxcmd[] = {"firefox", NULL};
  static const char *discordcmd[] = {"discord", NULL};
  static const char *adbscreencmd[] = {"screenshot", NULL};

@@ -5,7 +5,7 @@ My personal suckless setup.
 - Rosé Pine color scheme and JetBrainsMono Nerd Font by default (colors from [Rosé Pine for st](https://github.com/rose-pine/st))
 - General purpose keybindings:
     - Alt+Shift+D: Opens Discord
-    - Alt+Shift+F: Opens Zen Browser
+    - Alt+Shift+F: Opens Firefox
     - PrtScr: Opens Flameshot
 
 ## Dependencies
