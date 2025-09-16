@@ -84,12 +84,9 @@ static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
 static const char *firefoxcmd[] = {"firefox", NULL};
 static const char *discordcmd[] = {"discord", NULL};
 static const char *adbscreencmd[] = {"screenshot", NULL};
-static const char *playpausecmd[] = {"adb",      "shell", "input",
-                                     "keyevent", "85",    NULL};
-static const char *nextcmd[] = {"adb",      "shell", "input",
-                                "keyevent", "87",    NULL};
-static const char *previouscmd[] = {"adb",      "shell", "input",
-                                    "keyevent", "88",    NULL};
+static const char *playpausecmd[] = {"adb", "shell", "input", "keyevent", "85", NULL};
+static const char *nextcmd[] = {"adb", "shell", "input", "keyevent", "87", NULL};
+static const char *previouscmd[] = {"adb", "shell", "input", "keyevent", "88", NULL};
 static const char *volumeup[] = {"pulsemixer", "--change-volume", "+5", NULL};
 static const char *volumedown[] = {"pulsemixer", "--change-volume", "-5", NULL};
 static const char *volumereset[] = {"pulsemixer", "--set-volume", "60", NULL};
