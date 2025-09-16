@@ -1,31 +1,73 @@
+diff --git a/dwm/config.def.h b/dwm/config.def.h
+index 2643f40..db7004d 100644
+--- a/dwm/config.def.h
++++ b/dwm/config.def.h
+@@ -4,7 +4,7 @@
+ static const unsigned int borderpx = 0; /* border pixel of windows */
+ static const unsigned int gappx = 15;   /* gaps between windows */
+ static const unsigned int snap = 32;    /* snap pixel */
+-static const int showbar = 0;           /* 0 means no bar */
++static const int showbar = 1;           /* 0 means no bar */
+ static const int topbar = 1;            /* 0 means bottom bar */
+ static const int splitstatus = 1;       /* 1 for split status items */
+ static const char *splitdelim = ";"; /* Character used for separating status */
+@@ -81,7 +81,7 @@ static const char *dmenucmd[] = {
+     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
+ static const char *termcmd[] = {"st", NULL};
+ static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
+-static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
++static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
+ static const char *firefoxcmd[] = {"firefox", NULL};
+ static const char *discordcmd[] = {"discord", NULL};
+ static const char *adbscreencmd[] = {"screenshot", NULL};
+diff --git a/dwm/config.h b/dwm/config.h
+index 2643f40..db7004d 100644
+--- a/dwm/config.h
++++ b/dwm/config.h
+@@ -4,7 +4,7 @@
+ static const unsigned int borderpx = 0; /* border pixel of windows */
+ static const unsigned int gappx = 15;   /* gaps between windows */
+ static const unsigned int snap = 32;    /* snap pixel */
+-static const int showbar = 0;           /* 0 means no bar */
++static const int showbar = 1;           /* 0 means no bar */
+ static const int topbar = 1;            /* 0 means bottom bar */
+ static const int splitstatus = 1;       /* 1 for split status items */
+ static const char *splitdelim = ";"; /* Character used for separating status */
+@@ -81,7 +81,7 @@ static const char *dmenucmd[] = {
+     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
+ static const char *termcmd[] = {"st", NULL};
+ static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
+-static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
++static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
+ static const char *firefoxcmd[] = {"firefox", NULL};
+ static const char *discordcmd[] = {"discord", NULL};
+ static const char *adbscreencmd[] = {"screenshot", NULL};
 diff --git a/slstatus/config.def.h b/slstatus/config.def.h
-index c273999..d8c35ed 100644
+index b48aa4b..1ba95b9 100644
 --- a/slstatus/config.def.h
 +++ b/slstatus/config.def.h
-@@ -70,6 +70,8 @@ static const struct arg args[] = {
-     {datetime, "%s;", "%G. %B. %e. %a"},
-     {run_command, "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
-     {keymap, "%s ", NULL},
-+    {wifi_essid, "%s ", "wlan0"},
-+    {battery_perc, "%s%% ", "BAT1"},
-     {datetime, "%s ", "%H:%M:%S"},
-
+@@ -69,5 +69,7 @@ static const struct arg args[] = {
+   {datetime,     "%s;",   "%G. %B. %e. %a"},
+   {run_command,  "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
+   {keymap,       "%s ",   NULL},
++  {wifi_essid,   "%s ",   "wlan0"},
++  {battery_spec, "%s%%",  "BAT1"},
+   {datetime,     "%s ",   "%H:%M:%S"},
  };
 diff --git a/slstatus/config.h b/slstatus/config.h
-index c273999..d8c35ed 100644
+index b48aa4b..1ba95b9 100644
 --- a/slstatus/config.h
 +++ b/slstatus/config.h
-@@ -70,6 +70,8 @@ static const struct arg args[] = {
-     {datetime, "%s;", "%G. %B. %e. %a"},
-     {run_command, "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
-     {keymap, "%s ", NULL},
-+    {wifi_essid, "%s ", "wlan0"},
-+    {battery_perc, "%s%% ", "BAT1"},
-     {datetime, "%s ", "%H:%M:%S"},
-
+@@ -69,5 +69,7 @@ static const struct arg args[] = {
+   {datetime,     "%s;",   "%G. %B. %e. %a"},
+   {run_command,  "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
+   {keymap,       "%s ",   NULL},
++  {wifi_essid,   "%s ",   "wlan0"},
++  {battery_spec, "%s%%",  "BAT1"},
+   {datetime,     "%s ",   "%H:%M:%S"},
  };
 diff --git a/st/config.def.h b/st/config.def.h
-index f5b4265..aec5a49 100644
+index 444c838..0b28981 100644
 --- a/st/config.def.h
 +++ b/st/config.def.h
 @@ -5,7 +5,7 @@
@@ -38,7 +80,7 @@ index f5b4265..aec5a49 100644
  
  /*
 diff --git a/st/config.h b/st/config.h
-index f5b4265..aec5a49 100644
+index 444c838..0b28981 100644
 --- a/st/config.h
 +++ b/st/config.h
 @@ -5,7 +5,7 @@
@@ -50,47 +92,3 @@ index f5b4265..aec5a49 100644
  static int borderpx = 0;
  
  /*
-diff --git a/dwm/config.def.h b/dwm/config.def.h
-index 1bdb869..16a134f 100644
---- a/dwm/config.def.h
-+++ b/dwm/config.def.h
-@@ -4,7 +4,7 @@
- static const unsigned int borderpx = 0; /* border pixel of windows */
- static const unsigned int gappx = 15;   /* gaps between windows */
- static const unsigned int snap = 32;    /* snap pixel */
--static const int showbar = 0;           /* 0 means no bar */
-+static const int showbar = 1;           /* 0 means no bar */
- static const int topbar = 1;            /* 0 means bottom bar */
- static const int splitstatus = 1;       /* 1 for split status items */
- static const char *splitdelim = ";"; /* Character used for separating status */
-@@ -79,7 +79,7 @@ static const char *dmenucmd[] = {
-     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
- static const char *termcmd[] = {"st", NULL};
- static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
--static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
-+static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
- static const char *firefoxcmd[] = {"firefox", NULL};
- static const char *discordcmd[] = {"discord", NULL};
- static const char *adbscreencmd[] = {"screenshot", NULL};
-diff --git a/dwm/config.h b/dwm/config.h
-index 1bdb869..16a134f 100644
---- a/dwm/config.h
-+++ b/dwm/config.h
-@@ -4,7 +4,7 @@
- static const unsigned int borderpx = 0; /* border pixel of windows */
- static const unsigned int gappx = 15;   /* gaps between windows */
- static const unsigned int snap = 32;    /* snap pixel */
--static const int showbar = 0;           /* 0 means no bar */
-+static const int showbar = 1;           /* 0 means no bar */
- static const int topbar = 1;            /* 0 means bottom bar */
- static const int splitstatus = 1;       /* 1 for split status items */
- static const char *splitdelim = ";"; /* Character used for separating status */
-@@ -79,7 +79,7 @@ static const char *dmenucmd[] = {
-     "-nf",       col_gray3, "-sb",    col_cyan, "-sf",     col_gray4, NULL};
- static const char *termcmd[] = {"st", NULL};
- static const char *prtscrcmd[] = {"flameshot", "gui", NULL};
--static const char *kblayoutcmd[] = {"setxkbmap", "hu", NULL};
-+static const char *kblayoutcmd[] = {"setxkbmap", "hu", "-option", "caps:escape", NULL};
- static const char *firefoxcmd[] = {"firefox", NULL};
- static const char *discordcmd[] = {"discord", NULL};
- static const char *adbscreencmd[] = {"screenshot", NULL};
