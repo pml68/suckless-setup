@@ -56,6 +56,7 @@ static const char unknown_str[] = "n/a";
  *                                                     thermal zone on FreeBSD
  *                                                     (tz0, tz1, etc.)
  * uid                 UID of current user             NULL
+ * up                  interface is running            interface name (eth0)
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
@@ -64,12 +65,9 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-
-    /* function		format		argument	interval (in ms) */
-
-    {datetime, "%s;", "%G. %B. %e. %a"},
-    {run_command, "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
-    {keymap, "%s ", NULL},
-    {datetime, "%s ", "%H:%M:%S"},
-
+  /* function    format   argument */
+  {datetime,     "%s;",   "%G. %B. %e. %a"},
+  {run_command,  "%s%% ", "pulsemixer --get-volume | awk '{print $2 }'"},
+  {keymap,       "%s ",   NULL},
+  {datetime,     "%s ",   "%H:%M:%S"},
 };
