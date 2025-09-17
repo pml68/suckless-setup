@@ -123,7 +123,7 @@ static int max_textw(void) {
 static void cleanup(void) {
   size_t i;
 
-  XUngrabKey(dpy, AnyKey, AnyModifier, root);
+  XUngrabKeyboard(dpy, CurrentTime);
   for (i = 0; i < SchemeLast; i++)
     free(scheme[i]);
   for (i = 0; items && items[i].text; ++i)
@@ -817,14 +817,12 @@ static void setup(void) {
 
   /* create menu window */
   swa.override_redirect = True;
-  swa.background_pixel = 0;
   swa.border_pixel = 0;
   swa.colormap = cmap;
   swa.event_mask = ExposureMask | KeyPressMask | VisibilityChangeMask;
-  win = XCreateWindow(dpy, root, x, y, mw, mh, 0, depth, CopyFromParent, visual,
-                      CWOverrideRedirect | CWBackPixel | CWBorderPixel |
-                          CWColormap | CWEventMask,
-                      &swa);
+  win = XCreateWindow(dpy, root, x, y, mw, mh, 0,
+                      depth, CopyFromParent, visual,
+                      CWOverrideRedirect | CWBackPixel | CWBorderPixel | CWColormap | CWEventMask, &swa);
   XSetClassHint(dpy, win, &ch);
 
   /* input methods */
