@@ -14,12 +14,14 @@ static const char *colors[SchemeLast][2] = {
     [SchemeNorm] = {"#e0def4", "#191724"},
     [SchemeSel] = {"#e0def4", "#575e6e"},
     [SchemeOut] = {"#e0def4", "#dde1e7"},
+    [SchemePrompt] = {"#908caa", "#191724"},
 };
 
 static const unsigned int alphas[SchemeLast][2] = {
     [SchemeNorm] = {OPAQUE, alpha},
     [SchemeSel] = {OPAQUE, alpha},
     [SchemeOut] = {OPAQUE, alpha},
+    [SchemePrompt] = {OPAQUE, alpha},
 };
 
 /* -l and -g options; controls number of lines and columns in grid if > 0 */
